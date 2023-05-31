@@ -28,7 +28,7 @@ class CustomerController extends Controller
    public function update(Request $req){
     $customer=Customer::find($req->customer_id)->first();
     if($customer){
-        $customer->customer_id=$req->customer_id;
+       // $customer->customer_id=$req->customer_id;
     $customer->customer_name=$req->customer_name;
     $customer->service= $req->service;
     $customer->number= $req->number;
@@ -47,9 +47,13 @@ class CustomerController extends Controller
 
 
    public function delete($customer_id){
-    $customer=Customer::find($customer_id)->first();
-    if($customer){
-        return $customer->delete();
+    $customer=Customer::find($customer_id);
+    $result=$customer->delete();
+    if(!$customer){
+        return ["id"=>"not found"];
+    }
+    if($result){
+        return ["customer"=>"deleted"];
     }else{
         return ["id"=>"not found"];
     }

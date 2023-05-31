@@ -39,8 +39,9 @@ class UserController extends Controller
             }
             
             }
-            
-        
+    }
+    public function signUpForWeb(){
+        return view("login");
     }
     public function login(Request $request){
         $user=User::where('user_name',"=",$request->user_name)->first();
