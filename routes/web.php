@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +24,7 @@ Route::get('/', function () {
 Route::get("/signup",[UserController::class,"signUpForWeb"]);
 Route::post("/signup",[UserController::class,"signup"]);
 
-Route::get("/login",[UserController::class,"login"]);
+Route::get("/login",[UserController::class,"loginPage"]);
 Route::post("/login",[UserController::class,"login"]);
 
 
@@ -36,3 +37,6 @@ Route::post("/addCustomer",[CustomerController::class,"add"]);
 Route::get("/getCustomer/{customer_id?}",[CustomerController::class,"get"]);
 Route::put("/updateCustomer",[CustomerController::class,"update"]);
 Route::delete("/deleteCustomer/{customer_id}",[CustomerController::class,"delete"]);
+//Route::get("/admin",[AdminController::class,"adminPage"]);
+
+Route::post("/admin",[AdminController::class,"adminPage"]);

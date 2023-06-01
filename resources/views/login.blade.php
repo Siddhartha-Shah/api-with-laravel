@@ -45,6 +45,13 @@
                 margin-top:10%;
                 outline:none;
             }
+            form{
+                width:90%;
+                display:flex;
+                flex-direction:column;
+                align-items:center;
+                justify-content:center;
+            }
         </style>
 
     </head>
@@ -55,9 +62,12 @@
                 <h1>Sign In</h1>
                 <p style="color:grey;margin-top:-5px;">Login to Your account to continue</p>
 
+
+                <form method="POST" action="/admin">
+                    @csrf
                 <div style="width:90%">
                     <p style="color:grey;margin-top:-5px;">Email <span style="color:red">*</span></p>
-                    <input type="text" placeholder="Enter Email" style="margin-top:-15px"/>
+                    <input name="email" type="text" placeholder="Enter Email" style="margin-top:-15px"/>
                 </div>
 
                 <div style="width:90%">
@@ -65,11 +75,13 @@
                     <p style="color:grey">Password <span style="color:red">*</span></p>
                     <p style="color:blue">Forget Password?</p>
                     </div>
-                    <input type="password" placeholder="Enter Password" style="margin-top:-15px"/>
+                    <input name="password" type="password" placeholder="Enter Password" style="margin-top:-15px"/>
                     
                 </div>
                 <button onclick="submit" value="submit">Login</button>
+                
                     <p>Don't have an account?<span style="color:blue">Sign Up</span></p>
+                    </form>
 
                 
             </div>

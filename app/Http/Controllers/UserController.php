@@ -52,4 +52,8 @@ class UserController extends Controller
             return ["login"=>"sucess"];
             else return ["password"=>"did not match"];     
     }
+
+    public function loginPage(Request $request){
+        return view("login");
+    }
 }
