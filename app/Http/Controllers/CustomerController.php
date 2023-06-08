@@ -58,4 +58,12 @@ class CustomerController extends Controller
         return ["id"=>"not found"];
     }
    }
+   
+   public function customerForm(){
+    return view("customer_form");
+   }
+   public function customersDetails(){
+    $customer=Customer::all();
+     return view("customer",["getData"=>$customer]);
+   }
 }

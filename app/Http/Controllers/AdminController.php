@@ -10,8 +10,8 @@ class AdminController extends Controller
         // echo "<pre>";
         // print_r($request);
         // echo "</pre>";
-
-        if($request->input('email')=="admin@admin.com" && $request->input('password')=="admin123"){
+        //&& $request->input('password')=="admin123"
+        if($request->input('email')=="admin@admin.com" && $request->input('password')=="admin123" ){
             $user=User::all();
             return view("admin",["getData"=>$user]);
         }
@@ -19,5 +19,9 @@ class AdminController extends Controller
         // else redirect("/login");
 
        // return view("admin")
+    }
+    public function adminPageFromLogin(){
+        $user=User::all();
+        return view("admin",["getData"=>$user]);
     }
 }

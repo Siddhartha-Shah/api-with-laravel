@@ -55,4 +55,15 @@ class ServiceController extends Controller
         }
     }
 
+    public function servicePage(){
+        return view("serviceForm");
+    }
+
+    public function serviceDetails()
+    {$ser=Service::all();
+        return view("service",['ser'=>$ser]);
+    }
+
+
 }
+

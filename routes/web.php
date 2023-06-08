@@ -5,6 +5,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,9 +36,16 @@ Route::put("/updateService",[ServiceController::class,"update"]);
 Route::delete("/deleteService/{service_id}",[ServiceController::class,"delete"]);
 
 Route::post("/addCustomer",[CustomerController::class,"add"]);
+Route::post("/addCustomer",[CustomerController::class,"add"]);
 Route::get("/getCustomer/{customer_id?}",[CustomerController::class,"get"]);
 Route::put("/updateCustomer",[CustomerController::class,"update"]);
 Route::delete("/deleteCustomer/{customer_id}",[CustomerController::class,"delete"]);
-//Route::get("/admin",[AdminController::class,"adminPage"]);
-
+Route::get("/adminpage",[AdminController::class,"adminPageFromLogin"]);
 Route::post("/admin",[AdminController::class,"adminPage"]);
+Route::post("/serviceform",[ServiceController::class,"servicePage"]);
+
+Route::post("/customerform",[CustomerController::class,"customerForm"]);
+Route::get("/customers",[CustomerController::class,"customersDetails"]);
+Route::get("/services",[ServiceController::class,"ServiceDetails"]);
+Route::get("/bookings",[BookingController::class,"BookingDetails"]);
+Route::get("/dashboard",[DashboardController::class,"Dashboard"]);
