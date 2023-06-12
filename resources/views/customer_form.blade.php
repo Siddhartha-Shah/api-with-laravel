@@ -18,33 +18,34 @@
     </head>
     <body>
         <div>
-        <h1>Add customer</h1>
+        <h1>@if($data) update @else add @endif customer</h1>
         <table>
-            <form method="POST"  action="/addCustomer">
+            <form method="POST"  @if($data) action="/updateCustomer"  @else action="/addCustomer" @endif >
+           
                 @csrf
                 <tr>
                     <td>customer Id</td>
-                    <td><input type="text" name="customer_id"></td>
+                    <td><input type="text" name="customer_id" @if($data) value="{{$data->customer_id}} " @endif></td>
                 </tr>
                 <tr>
                     <td>customer Name</td>
-                    <td><input type="text" name="customer_name"></td>
+                    <td><input type="text" name="customer_name" @if($data) value="{{$data->customer_name}}" @endif></td>
                 </tr>
                 <tr>
                     <td>Service</td>
-                    <td><input type="text" name="service"></td>
+                    <td><input type="text" name="service" @if($data) value="{{$data->service}}" @endif></td>
                 </tr>
                 <tr>
                     <td>Number</td>
-                    <td><input type="text" name="number"></td>
+                    <td><input type="text" name="number" @if($data) value="{{$data->number}}" @endif></td>
                 </tr>
                 <tr>
                     <td>Address</td>
-                    <td><input type="text" name="address"></td>
+                <td><input type="text" name="address" @if($data) value="{{$data->address}} " @endif></td>
                 </tr>
                 <tr>
                     <td>Email</td>
-                    <td><input type="text" name="email"></td>
+                    <td><input type="text" name="email" @if($data) value="{{$data->email}}" @endif></td>
                 </tr>
                 <tr>
                     <td>

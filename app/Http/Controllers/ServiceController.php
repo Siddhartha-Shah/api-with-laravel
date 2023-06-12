@@ -15,6 +15,7 @@ class ServiceController extends Controller
         $service->provider_number = $request->provider_number;
         $service->provider_gender = $request->provider_gender;
         $service->address=$request->address;
+        $service->customer_id=$request->customer_id;
         $result = $service->save();
         if ($result) {
             return ['data' => 'inserted'];
@@ -35,6 +36,7 @@ class ServiceController extends Controller
         $service->provider_number = $request->provider_number;
         $service->provider_gender = $request->provider_gender;
         $service->address=$request->address;
+        $service->customer_id = $request->customer_id;
         $result=$service->save();
         if ($result) {
             return ["result" => "data has been updated"];
@@ -55,8 +57,14 @@ class ServiceController extends Controller
         }
     }
 
-    public function servicePage(){
-        return view("serviceForm");
+    public function servicePage($id=null){
+        if($id){
+            $data=Service::find($id);
+            return view("serviceForm",["data"=>$data]);
+        }else{
+            return view("serviceForm",["data"=>null]);
+        }
+        
     }
 
     public function serviceDetails()
@@ -64,6 +72,24 @@ class ServiceController extends Controller
         return view("service",['ser'=>$ser]);
     }
 
+    public function updateServices(Request $request){
+        $service=Service::find($request->service_id);
+      
+        $service->service_name = $request->service_name;
+        $service->service_provider = $request->service_provider;
+        $service->provider_number = $request->provider_number;
+        $service->provider_gender = $request->provider_gender;
+        $service->address=$request->address;
+        $service->customer_id = $request->customer_id;
+        $service->save();
+        return view("service",["ser"=>Service::all()]);
+    }
+
+    public function deleteServices($id){
+        $service=Service::find($id);
+        $service->delete();
+        return view("service",["ser"=>Service::all()]);
+    }
 
 }
 

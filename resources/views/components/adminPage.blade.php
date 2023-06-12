@@ -7,7 +7,7 @@
         <div class="main-container">
 
         <div class="navbar">
-        <img style="margin-left:5%"src="https://cdn.vectorstock.com/i/1000x1000/04/22/hammer-silhouette-isolated-on-blue-background-vector-22480422.webp" alt="navbar image"/>
+        <img style="margin-left:5%" src="https://cdn.vectorstock.com/i/1000x1000/04/22/hammer-silhouette-isolated-on-blue-background-vector-22480422.webp" alt="navbar image"/>
             <h2 style="color:purple;margin-left:1%;">Demo admin</h2>
             <form style="margin-left:20%" method="POST" action="customerform">
             @csrf

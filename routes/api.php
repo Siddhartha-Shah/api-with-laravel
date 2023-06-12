@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\IndexController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -36,3 +37,6 @@ Route::post("/addCustomer",[CustomerController::class,"add"]);
 Route::get("/getCustomer/{customer_id?}",[CustomerController::class,"get"]);
 Route::put("/updateCustomer",[CustomerController::class,"update"]);
 Route::delete("/deleteCustomer/{customer_id}",[CustomerController::class,"delete"]);
+
+Route::get("/getCustomer",[IndexController::class,"index"]);
+Route::get("/getServices",[IndexController::class,"index2"]);

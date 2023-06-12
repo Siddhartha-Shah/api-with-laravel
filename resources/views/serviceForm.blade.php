@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Add Service</title>
+        <title> @if($data) update @else add @endif Service</title>
         <style>
             
            div{
@@ -20,31 +20,31 @@
         <div>
         <h1>Add Service</h1>
         <table>
-            <form method="POST"  action="/addService">
+            <form method="POST"  @if($data) action="/updateService" @else action="/addService" @endif>
                 @csrf
                 <tr>
                     <td>Service Id</td>
-                    <td><input type="text" name="service_id"></td>
+                    <td><input type="text" name="service_id" @if($data) value="{{ $data->service_id }}" @endif></td>
                 </tr>
                 <tr>
                     <td>Service Name</td>
-                    <td><input type="text" name="service_name"></td>
+                    <td><input type="text" name="service_name" @if($data) value="{{ $data->service_name }}" @endif></td>
                 </tr>
                 <tr>
                     <td>Service Provider</td>
-                    <td><input type="text" name="service_provider"></td>
+                    <td><input type="text" name="service_provider" @if($data) value="{{ $data->service_provider }}" @endif></td>
                 </tr>
                 <tr>
                     <td>Provider Number</td>
-                    <td><input type="text" name="provider_number"></td>
+                    <td><input type="text" name="provider_number" @if($data) value="{{ $data->provider_number }}" @endif></td>
                 </tr>
                 <tr>
                     <td>Gender</td>
-                    <td><input type="text" name="provider_gender"></td>
+                    <td><input type="text" name="provider_gender"  @if($data) value="{{ $data->provider_gender }}" @endif></td>
                 </tr>
                 <tr>
                     <td>Address</td>
-                    <td><input type="text" name="address"></td>
+                    <td><input type="text" name="address"  @if($data) value="{{ $data->address }}" @endif></td>
                 </tr>
                 <tr>
                     <td>

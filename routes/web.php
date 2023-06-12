@@ -38,10 +38,19 @@ Route::delete("/deleteService/{service_id}",[ServiceController::class,"delete"])
 Route::post("/addCustomer",[CustomerController::class,"add"]);
 Route::post("/addCustomer",[CustomerController::class,"add"]);
 Route::get("/getCustomer/{customer_id?}",[CustomerController::class,"get"]);
-Route::put("/updateCustomer",[CustomerController::class,"update"]);
-Route::delete("/deleteCustomer/{customer_id}",[CustomerController::class,"delete"]);
+
+Route::post("/updateCustomer",[CustomerController::class,"updateCustomer"]);
+
+
+Route::get("/deleteCustomer/{id}",[CustomerController::class,"delete"]);
+
+Route::get("/updateCustomers/{id?}",[CustomerController::class,"customerForm"]);
+
 Route::get("/adminpage",[AdminController::class,"adminPageFromLogin"]);
 Route::post("/admin",[AdminController::class,"adminPage"]);
+
+
+Route::get("/updateServices/{id?}",[ServiceController::class,"servicePage"]);
 Route::post("/serviceform",[ServiceController::class,"servicePage"]);
 
 Route::post("/customerform",[CustomerController::class,"customerForm"]);
@@ -49,3 +58,8 @@ Route::get("/customers",[CustomerController::class,"customersDetails"]);
 Route::get("/services",[ServiceController::class,"ServiceDetails"]);
 Route::get("/bookings",[BookingController::class,"BookingDetails"]);
 Route::get("/dashboard",[DashboardController::class,"Dashboard"]);
+
+Route::get("/profile",[CustomerController::class,"profile"]);
+
+Route::post("/updateService",[ServiceController::class,"updateServices"]);
+Route::get("/deleteServices/{id}",[ServiceController::class,"deleteServices"]);

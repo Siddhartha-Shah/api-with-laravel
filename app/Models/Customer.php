@@ -9,4 +9,7 @@ class Customer extends Model
 {
     use HasFactory;
     protected $primaryKey="customer_id";
+    public function service(){
+        return $this->hasMany('App\Models\Service','service_id','service_id');
+    }
 }
