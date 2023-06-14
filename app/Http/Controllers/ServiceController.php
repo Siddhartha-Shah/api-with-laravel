@@ -91,5 +91,12 @@ class ServiceController extends Controller
         return view("service",["ser"=>Service::all()]);
     }
 
+    public function serviceAvailable($name){
+        
+        $services=Service::where("service_name","carpenter")->get();
+        //dd($services);
+        return view("service_available",["services"=>$services]);
+       }
+
 }
 

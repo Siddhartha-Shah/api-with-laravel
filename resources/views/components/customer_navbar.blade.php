@@ -23,6 +23,12 @@
         align-items:center;
         justify-content:space-between;
     }
+
+    #carpenter:hover{
+        width:10rem;
+        height:10rem;
+
+    }
 </style>
 
 <title>navbar</title>
@@ -39,16 +45,8 @@
     <div style="background-color:grey;width:100%;height:95%;display:grid;grid-template-columns: auto auto auto;padding-left:20%;padding-top:5%;">
     
     @include('components.cards')
-  
-
-    
-    
-    
 
     </div>
-    
-    
-    
 
     </div>
    

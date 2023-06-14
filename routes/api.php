@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\BookingController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -38,5 +39,9 @@ Route::get("/getCustomer/{customer_id?}",[CustomerController::class,"get"]);
 Route::put("/updateCustomer",[CustomerController::class,"update"]);
 Route::delete("/deleteCustomer/{customer_id}",[CustomerController::class,"delete"]);
 
-Route::get("/getCustomer",[IndexController::class,"index"]);
+Route::get("/getCustomers",[IndexController::class,"index"]);
 Route::get("/getServices",[IndexController::class,"index2"]);
+
+Route::get("/getBookingForCustomer",[BookingController::class,"getBookingForCustomer"]);
+Route::get("/getBookingForService",[BookingController::class,"getBookingForService"]);
+Route::get("/getBooking",[BookingController::class,"getBookingForCustomer"]);

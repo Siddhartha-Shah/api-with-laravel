@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Service;
 use Illuminate\Http\Request;
 use App\Models\Customer;
+use App\Models\Booking;
 class CustomerController extends Controller
 {
    public function add(Request $req){
@@ -34,6 +36,8 @@ class CustomerController extends Controller
     $customer->number= $req->number;
     $customer->address=$req->address;
     $customer->email= $req->email;
+    $customer->service_id= $req->service_id;
+    $customer->booking_id= $req->booking_id;
     $result=$customer->save();
     if($result){
         return ["data"=>"sucessfully updated"];
@@ -78,6 +82,7 @@ class CustomerController extends Controller
    public function profile(){
     return view("components.customer_navbar");
    }
+ 
 
    public function deleteCust($id){
     $customer=Customer::find($id);
@@ -103,5 +108,15 @@ class CustomerController extends Controller
     return view("customer",["getData"=>$customers]);
 
    }
+}
+public function customerRequestForService(Request $req){
+    $customer=Customer::find($req->customer_id);
+    $service=Service::find($req->service_id);
+    $booking=new Booking();
+    $booking->action="requested";
+    $booking->customer_id=$customer->customer_id;
+    $booking->service_id=$service->service_id;
+    $booking->save();
+
 }
 }

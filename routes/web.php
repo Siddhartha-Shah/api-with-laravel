@@ -55,11 +55,15 @@ Route::post("/serviceform",[ServiceController::class,"servicePage"]);
 
 Route::post("/customerform",[CustomerController::class,"customerForm"]);
 Route::get("/customers",[CustomerController::class,"customersDetails"]);
-Route::get("/services",[ServiceController::class,"ServiceDetails"]);
+Route::get("/service",[ServiceController::class,"ServiceDetails"]);
 Route::get("/bookings",[BookingController::class,"BookingDetails"]);
 Route::get("/dashboard",[DashboardController::class,"Dashboard"]);
 
 Route::get("/profile",[CustomerController::class,"profile"]);
+Route::get("/services",[CustomerController::class,"profile"]);
+Route::get("/services/available/{name?}",[ServiceController::class,"serviceAvailable"]);
 
 Route::post("/updateService",[ServiceController::class,"updateServices"]);
 Route::get("/deleteServices/{id}",[ServiceController::class,"deleteServices"]);
+
+

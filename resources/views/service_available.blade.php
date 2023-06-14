@@ -1,0 +1,59 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <style>
+            body{
+        margin:0px;
+    }
+    
+    .container{
+
+       background-color:red;
+       width:100%;
+       height:fit-content;
+       margin:0px;
+       border:1px solid black;
+       
+    }
+    .navbar{
+        width:100%;
+        height:8vh;
+        background-color:orange;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+    }
+    #botton:hover{
+        background-color:red;
+        
+    }
+    #botton:hover{
+       color:black;
+        
+    }
+
+        </style>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    </head>
+    <body>
+    <div class="container">
+        <div class="navbar">
+           <h2 style="margin-left:2%;">Home Service Nepal</h2>
+           @include('components.navbar') 
+    </div>
+
+    <div style="background-color:grey;width:100%;height:95%;display:grid;grid-template-columns: auto auto auto;padding-left:12%;">
+
+    @foreach($services as $service)
+    <div class="card mt-5" style="width: 16rem;height:25rem;">
+  <img class="card-img-top" src="{{ asset('photoes/p1.jpg') }}" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">{{$service->service_provider}}</h5>
+    <p class="card-text">{{$service->address}}</p>
+    <a href="#"  class="btn btn-primary" id="botton">REQUEST</a>
+  </div>
+</div>
+@endforeach
+
+    </body>
+</html>

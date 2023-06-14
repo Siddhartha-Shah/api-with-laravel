@@ -62,7 +62,7 @@
         </button>
         
 
-        <button class="sidebar-content" onclick="parent.location='http://127.0.0.1:8000/services'">
+        <button class="sidebar-content" onclick="parent.location='http://127.0.0.1:8000/service'">
             <b style="margin-left:2%">Home Service</b>
             <div style="display:flex;justify-content:left;align-items:center;">
             <img style="width:30px;height:30px;margin-left:2%" src="https://4.imimg.com/data4/KK/OI/MY-5670369/home-cleaning-services-500x500.png" alt="icon"/>
