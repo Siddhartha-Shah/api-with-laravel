@@ -31,6 +31,14 @@
        color:black;
         
     }
+    button:hover span {
+          display: none
+        }
+
+    span:hover:before {
+        content: "REQUESTED"
+        }
+
 
         </style>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
@@ -50,10 +58,11 @@
   <div class="card-body">
     <h5 class="card-title">{{$service->service_provider}}</h5>
     <p class="card-text">{{$service->address}}</p>
-    <a href="#"  class="btn btn-primary" id="botton">REQUEST</a>
+    <input class="btn btn-primary" onclick="this.value='REQUESTED'" type="button" value="REQUEST" id="myButton1" />
   </div>
 </div>
 @endforeach
+
 
     </body>
 </html>

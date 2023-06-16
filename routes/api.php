@@ -45,3 +45,4 @@ Route::get("/getServices",[IndexController::class,"index2"]);
 Route::get("/getBookingForCustomer",[BookingController::class,"getBookingForCustomer"]);
 Route::get("/getBookingForService",[BookingController::class,"getBookingForService"]);
 Route::get("/getBooking",[BookingController::class,"getBookingForCustomer"]);
+Route::get("/getAllBooking",[BookingController::class,"BookingDetails"]);

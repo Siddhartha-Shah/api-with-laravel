@@ -7,6 +7,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FormController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,7 +64,14 @@ Route::get("/profile",[CustomerController::class,"profile"]);
 Route::get("/services",[CustomerController::class,"profile"]);
 Route::get("/services/available/{name?}",[ServiceController::class,"serviceAvailable"]);
 
+Route::get("/servicer/service_profile",[ServiceController::class,"service_profile_request"]);
+
 Route::post("/updateService",[ServiceController::class,"updateServices"]);
 Route::get("/deleteServices/{id}",[ServiceController::class,"deleteServices"]);
+
+Route::get("/signupForServicer",[FormController::class,"signUpForServicer"]);
+Route::get("/signupForCustomer",[FormController::class,"signUpForCustomer"]);
+
+
 
 

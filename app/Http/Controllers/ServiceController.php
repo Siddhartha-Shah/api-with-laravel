@@ -93,9 +93,13 @@ class ServiceController extends Controller
 
     public function serviceAvailable($name){
         
-        $services=Service::where("service_name","carpenter")->get();
+        $services=Service::where("service_name",$name)->get();
         //dd($services);
         return view("service_available",["services"=>$services]);
+       }
+
+       public function service_profile_request(){
+        return view("servicer/service_profile");
        }
 
 }
