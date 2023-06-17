@@ -32,20 +32,20 @@
                     <td><input type="text" name="customer_name" @if($data) value="{{$data->customer_name}}" @endif></td>
                 </tr>
                 <tr>
-                    <td>Service</td>
-                    <td><input type="text" name="service" @if($data) value="{{$data->service}}" @endif></td>
+                    <td>Email</td>
+                    <td><input type="text" name="customer_email" @if($data) value="{{$data->customer_email}}" @endif></td>
                 </tr>
                 <tr>
                     <td>Number</td>
-                    <td><input type="text" name="number" @if($data) value="{{$data->number}}" @endif></td>
+                    <td><input type="text" name="customer_number" @if($data) value="{{$data->customer_number}}" @endif></td>
                 </tr>
                 <tr>
                     <td>Address</td>
-                <td><input type="text" name="address" @if($data) value="{{$data->address}} " @endif></td>
+                <td><input type="text" name="customer_address" @if($data) value="{{$data->customer_address}} " @endif></td>
                 </tr>
                 <tr>
-                    <td>Email</td>
-                    <td><input type="text" name="email" @if($data) value="{{$data->email}}" @endif></td>
+                    <td>Password</td>
+                    <td><input type="text" name="customer_password" @if($data) value="{{$data->customer_password}}" @endif></td>
                 </tr>
                 <tr>
                     <td>

@@ -2,24 +2,28 @@
 
 namespace App\Http\Controllers;
 use App\Models\Service;
+use App\Models\Customer;
+use App\Models\Booking;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+
 
 class ServiceController extends Controller
 {
     public function add(Request $request)
     {
         $service = new Service();
-        $service->service_id=$request->service_id;
-        $service->service_name = $request->service_name;
-        $service->service_provider = $request->service_provider;
-        $service->provider_number = $request->provider_number;
-        $service->provider_gender = $request->provider_gender;
-        $service->address=$request->address;
-        $service->customer_id=$request->customer_id;
+        $service->provider_name = $request->provider_name;
+        $service->provider_address = $request->provider_address;
+        $service->provider_experience = $request->provider_experience;
+        $service->provider_gender=$request->provider_gender;
+        $service->provider_email=$request->provider_email;
+        $service->provider_number=$request->provider_number;
+        $service->provider_password=$request->provider_password;
+
+        $service->provider_service=$request->provider_service;
         $result = $service->save();
         if ($result) {
-            return ['data' => 'inserted'];
+            return redirect('service');
         } else {
             return ['data' => 'not inserted'];
         }
@@ -29,23 +33,7 @@ class ServiceController extends Controller
         return $service_id ? Service::find($service_id) :  Service::all();
     }
 
-    public function update(Request $request){
-        $service = Service::find($request->service_id);
-        $service->service_id=$request->service_id;
-        $service->service_name = $request->service_name;
-        $service->service_provider = $request->service_provider;
-        $service->provider_number = $request->provider_number;
-        $service->provider_gender = $request->provider_gender;
-        $service->address=$request->address;
-        $service->customer_id = $request->customer_id;
-        $result=$service->save();
-        if ($result) {
-            return ["result" => "data has been updated"];
-        } else {
-            return ["result" => "data has not been updated"];
-        }
-        
-    }
+
 
     public function delete($service_id)
     {
@@ -68,20 +56,26 @@ class ServiceController extends Controller
         
     }
 
+    public function serviceDetailForAdmin()
+    {$ser=Service::all();
+        return view("service",['ser'=>$ser]);
+    }
+
     public function serviceDetails()
     {$ser=Service::all();
         return view("servicer.service_profile",['service'=>$ser]);
     }
 
     public function updateServices(Request $request){
-        $service=Service::find($request->service_id);
-      
-        $service->service_name = $request->service_name;
-        $service->service_provider = $request->service_provider;
-        $service->provider_number = $request->provider_number;
+        $service = Service::find($request->service_id);
+        $service->provider_name = $request->provider_name;
+        $service->provider_address = $request->provider_address;
+        $service->provider_experience = $request->provider_experience;
         $service->provider_gender = $request->provider_gender;
-        $service->address=$request->address;
-        $service->customer_id = $request->customer_id;
+        $service->provider_email=$request->provider_email;
+        $service->provider_number = $request->provider_number;
+        $service->provider_password=$request->provider_password;
+        $service->provider_service = $request->provider_service;
         $service->save();
         return view("service",["ser"=>Service::all()]);
     }
@@ -93,7 +87,6 @@ class ServiceController extends Controller
     }
 
     public function serviceAvailable($name){
-        
         $services=Service::where("provider_service",$name)->get();
         //dd($services);
         return view("service_available",["services"=>$services]);
@@ -133,20 +126,61 @@ class ServiceController extends Controller
         
        }
        public function servicer_login(Request $request){
+        if(session()->has('service_provider')){
+            return view("servicer/service_profile");
+        }
         return view("servicer/servicer_login");
      
       }
+
+      public function servicer_logout(Request $request){
+        if(session()->has('service_provider')){
+            session()->pull('service_provider');
+            session()->pull('service_id');
+        }
+        return view("servicer/servicer_login");
+     
+      }
+
       public function servicerLoggedIn(Request $request){
-        $service=Service::where('provider_email',"=",$request->provider_email)->first();
-        if(empty($service)){
+        $services=Service::where('provider_email',"=",$request->provider_email)->first();
+        if(empty($services)){
             return ["email"=>"invalid"];
         }
-            if($service->provider_password===$request->provider_password)
-            return view("servicer/service_profile",["service_provider"=>$service]);
+            if($services->provider_password===$request->provider_password){
+                $request->session()->put("service_provider",[$services->provider_name,$services->provider_experience,$services->provider_address,$services->provider_number,$services->provider_email]);
+                $request->session()->put("service_id",$services->service_id);
+              //echo(session("service_provider")[0]);
+                
+                return view("servicer/service_profile");
+            }
+            
             else return ["password"=>"did not match"];  
       }
 
       public function servicer_request(){
-        return view("servicer/servicer_request");
+        $booking=Booking::with('customer')->get();
+        echo "<pre>";
+        print_r($booking[0]['customer'][0]->customer_id);
+        echo "</pre>";
+        //return view("servicer/servicer_request");
+      }
+
+      public function selectService($s_id){
+        $booking=new Booking();
+        $booking->action="requested";
+        $booking->customer_id=session('customer_id');
+        $booking->service_id=$s_id;
+        $booking->save();
+        $customer=Customer::find(session('customer_id'));
+        $customer->booking_id=$booking->id;
+        $customer->save();
+        $service=Service::find($s_id);
+        $service->booking_id=$booking->id;
+        $service->save();
+        // echo "<pre>";
+        // print_r($booking->booking_id);
+        // echo "</pre>";
+
       }
 }

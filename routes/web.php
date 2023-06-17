@@ -43,7 +43,7 @@ Route::get("/getCustomer/{customer_id?}",[CustomerController::class,"get"]);
 Route::post("/updateCustomer",[CustomerController::class,"updateCustomer"]);
 
 
-Route::get("/deleteCustomer/{id}",[CustomerController::class,"delete"]);
+Route::get("/deleteCustomer/{id}",[CustomerController::class,"deleteCustomer"]);
 
 Route::get("/updateCustomers/{id?}",[CustomerController::class,"customerForm"]);
 
@@ -56,20 +56,23 @@ Route::post("/serviceform",[ServiceController::class,"servicePage"]);
 
 Route::post("/customerform",[CustomerController::class,"customerForm"]);
 Route::get("/customers",[CustomerController::class,"customersDetails"]);
-Route::get("/service",[ServiceController::class,"ServiceDetails"]);
+Route::get("/service",[ServiceController::class,"ServiceDetailForAdmin"]);
 Route::get("/bookings",[BookingController::class,"BookingDetails"]);
 Route::get("/dashboard",[DashboardController::class,"Dashboard"]);
 
 Route::get("/profile",[CustomerController::class,"profile"]);
 Route::get("/services",[CustomerController::class,"profile"]);
 Route::get("/services/available/{name?}",[ServiceController::class,"serviceAvailable"]);
+Route::get("/services/select_service/{s_id}",[ServiceController::class,"selectService"]);
 
 Route::get("/servicer/service_profile",[ServiceController::class,"service_profile_request"]);
 Route::get("/servicer/serviceForm",[ServiceController::class,"service_form"]);
 Route::post("/addServicer",[ServiceController::class,"addServicer"]);
 Route::get("/servicer/login",[ServiceController::class,"servicer_login"]);
 Route::post("/servicer/login",[ServiceController::class,"servicerLoggedIn"]);
+Route::get("/servicer/logout",[ServiceController::class,"servicer_logout"]);
 Route::get("/servicer/servicer_request",[ServiceController::class,"servicer_request"]);
+
 
 Route::post("/updateService",[ServiceController::class,"updateServices"]);
 Route::get("/deleteServices/{id}",[ServiceController::class,"deleteServices"]);
@@ -79,8 +82,10 @@ Route::get("/signupForCustomer",[FormController::class,"signUpForCustomer"]);
 
 Route::get("/customer/login",[CustomerController::class,"customer_login"]);
 Route::post("/customer/login",[CustomerController::class,"customer_logged_in"]);
+Route::get("/customer/logout",[CustomerController::class,"customer_logout"]);
 Route::get("/customer/customer_profile",[CustomerController::class,"customer_logged_in"]);
 Route::get("/customer/customerservice",[CustomerController::class,"customer_service"]);
+
 
 
 

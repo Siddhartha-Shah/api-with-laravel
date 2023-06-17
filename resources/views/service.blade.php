@@ -6,21 +6,25 @@
         <table id="customers">
   <tr>
     <th>Service Id</th>
-    <th>Service Name</th>
-    <th>Service Provider</th>
+    <th>Provider Name</th>
+    <th>Service </th>
     <th>Number</th>
-    <th>Gender</th>
+    <th>Email</th>
+    <th>Provider Experience</th>
     <th>Address</th>
+    <th>provider service</th>
     <th>Action</th>
      </tr>
      @foreach($ser as $data)
      <tr>
      <td>{{$data->service_id}}</td>
-        <td>{{$data->service_name}}</td>
-        <td>{{$data->service_provider}}</td>
+        <td>{{$data->provider_name}}</td>
+        <td>{{$data->provider_service}}</td>
         <td>{{$data->provider_number}}</td>
-        <td>{{$data->provider_gender}}</td>
-        <td>{{$data->address}}</>
+        <td>{{$data->provider_email}}</td>
+        <td>{{$data->provider_experience}} years</td>
+        <td>{{$data->provider_address}}</>
+        <td>{{$data->provider_service}}</>
 
 
         <td style="width:50%;height:100%;display:flex;justify-content:center;align-items:center;">

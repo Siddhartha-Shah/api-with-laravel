@@ -9,11 +9,12 @@
               <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
                 class="rounded-circle img-fluid" style="width: 100px;" />
             </div>
-            <h4 class="mb-2">{{$service_provider->provider_name}}</h4>
-            <p class="text-muted mb-4">{{$service_provider->provider_experience}} years experience</p>
-            <div class="mb-4 pb-2">
-              <p>address:  {{$service_provider->provider_address}}</p>
-              <p>contact:  {{$service_provider->provider_number}}</p>
+            <h4 class="mb-2">{{  session("service_provider")[0] }}</h4>
+            <p class="text-muted mb-4"> {{session("service_provider")[1] }} years experience</p>
+            <div class="mb-2 pb-2">
+              <p>address: {{session("service_provider")[2] }}</p>
+              <p>contact: {{session("service_provider")[3] }} </p>
+              <p>contact: {{session("service_provider")[4] }} </p>
             </div>
             
             <div class="d-flex justify-content-between text-center mt-5 mb-2">

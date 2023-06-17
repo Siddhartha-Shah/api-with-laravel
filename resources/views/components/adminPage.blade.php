@@ -24,9 +24,9 @@
             <img src="https://w7.pngwing.com/pngs/922/214/png-transparent-computer-icons-avatar-businessperson-interior-design-services-corporae-building-company-heroes-thumbnail.png" alt="Avatar" class="avatar">
             <p style="color:purple;margin-left:1%">DEMO ADMIN</p>
 
-            <select style="width:15px;margin-left:5px;">
-                <option value="logout">LOGOUT</option>
-            </select>
+            <div style="margin-left:5px;">
+               <a href="/login">LOGOUT</a>
+            </div>
         </div>
 
 

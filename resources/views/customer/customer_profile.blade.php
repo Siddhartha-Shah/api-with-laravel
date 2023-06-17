@@ -36,11 +36,11 @@
               <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
                 class="rounded-circle img-fluid" style="width: 100px;" />
             </div>
-            <h4 class="mb-2">{{$request->session()->get(customer_name)}}</h4>
-            <p class="text-muted mb-4">HELLO</p>
+            <h4 class="mb-2">{{session('customer')[0]}}</h4>
+            <p class="text-muted mb-4">{{ session('customer')[1] }}</p>
             <div class="mb-4 pb-2">
-              <p>address:  {{$request->session()->get(customer_address)}}</p>
-              <p>contact:  {{$request->session()->get(customer_number)}}</p>
+              <p>address:  {{session('customer')[2]}}</p>
+              <p>contact:  {{session('customer')[3]}}</p>
             </div>
             
             </div>

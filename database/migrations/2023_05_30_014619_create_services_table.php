@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('provider_email');
             $table->double('provider_number');
             $table->string('provider_password');
-            $table->string('provider_confirm_password');
+            $table->string('provider_confirm_password')->nullable();
             $table->string('provider_service');
             $table->string('provider_photo',300)->nullable();
             $table->timestamps();

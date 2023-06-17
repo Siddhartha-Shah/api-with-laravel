@@ -8,7 +8,32 @@ use App\Models\Customer;
 use App\Models\Booking;
 class CustomerController extends Controller
 {
+
+    public function add(Request $request){
+        $customer=new Customer();
+        $customer->customer_name=$request->customer_name;
+        $customer->customer_email= $request->customer_email;
+        $customer->customer_address= $request->customer_address;
+        $customer->customer_number=$request->customer_number;
+        $customer->customer_password= $request->customer_password;
+        $result=$customer->save();
+        if($result){
+            return redirect('/customers');
+        }else{
+            return ["data"=>"not entered"];
+        }
+       }
    
+       public function deleteCustomer($customer_id){
+        $customer=Customer::find($customer_id);
+        $result=$customer->delete();
+   
+        if(!$customer){
+            return ['id'=>'not delted'];
+        }else{
+            return redirect('/customers');
+        }
+       }
    
    public function customerForm($id=""){
     $data=$id;
@@ -43,10 +68,10 @@ class CustomerController extends Controller
     if($customer){
        // $customer->customer_id=$req->customer_id;
     $customer->customer_name=$req->customer_name;
-    $customer->service= $req->service;
-    $customer->number= $req->number;
-    $customer->address=$req->address;
-    $customer->email= $req->email;
+    $customer->customer_email= $req->customer_email;
+    $customer->customer_number= $req->customer_number;
+    $customer->customer_address=$req->customer_address;
+    $customer->customer_password= $req->customer_password;
     $customer->service_id= $req->service_id;
     $customer->save();
     $customers=Customer::all();
@@ -66,6 +91,9 @@ public function customerRequestForService(Request $req){
 }
 
 public function customer_login(Request $req){
+    if(session()->has('customer')){
+        return view("customer/customer_profile");
+    }
     return view("customer.customer_login");
 }
 public function customer_logged_in(Request $request){
@@ -74,17 +102,24 @@ public function customer_logged_in(Request $request){
             return ["email"=>"invalid"];
         }
             if($customer->customer_password===$request->customer_password){
-                $request->session()->put($request->customer_email);
-                $request->session()->put($request->customer_password);
-                
-                return view("customer/customer_profile",["customer"=>$customer]);
+                $request->session()->put("customer",[$customer->customer_name,$customer->customer_email,$customer->customer_address,$customer->customer_number]);
+                $request->session()->put("customer_id",$customer->customer_id);
+                return view("customer/customer_profile");
             }
-            
             else return ["password"=>"did not match"];  
-    
+}
+
+public function customer_logout(){
+    if(session()->has('customer')){
+        session()->pull('customer');
+        session()->pull('customer_id');
+    }
+
+    return view("customer.customer_login");
 }
 
 public function customer_service(){
     return view("customer.customer_service");
 }
+
 }

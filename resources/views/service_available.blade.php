@@ -58,7 +58,11 @@
   <div class="card-body">
     <h5 class="card-title">{{$service->provider_name}}</h5>
     <p class="card-text">{{$service->provider_experience}} years of experience</p>
-    <input class="btn btn-primary" onclick="this.value='REQUESTED'" type="button" value="REQUEST" id="myButton1" />
+   <!-- <input class="btn btn-primary" onclick="this.value='REQUESTED'" type="button" value="REQUEST" name="myButton1" />
+    -->
+    <a href={{ url('/services/select_service', [$service->service_id]) }} class="btn btn-primary">
+    REQUEST
+    </a>
   </div>
 </div>
 @endforeach

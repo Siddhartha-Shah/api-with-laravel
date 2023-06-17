@@ -23,9 +23,9 @@ class BookingController extends Controller
     public function BookingDetails(Request $request){
     $list = DB::table('bookings')
     ->join('customers', 'bookings.booking_id', '=', 'customers.booking_id')
-    ->join('services', 'bookings.booking_id', '=', 'services.service_id')
+    ->join('services', 'bookings.booking_id', '=', 'services.booking_id')
     ->get();
-     return view('bookings',["getData"=>$list]);
+   return view('bookings',["getData"=>$list]);
     
     }
 
