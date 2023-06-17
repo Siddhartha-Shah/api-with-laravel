@@ -17,12 +17,14 @@ return new class extends Migration
             $table->id("service_id");
             $table->string('provider_name');
             $table->string('provider_address');
-            $table->string('provider_experience');
+            $table->integer('provider_experience');
             $table->string('provider_gender');
             $table->string('provider_email');
             $table->double('provider_number');
-            $table->double('provider_service');
-            $table->string('provider_photo',300);
+            $table->string('provider_password');
+            $table->string('provider_confirm_password');
+            $table->string('provider_service');
+            $table->string('provider_photo',300)->nullable();
             $table->timestamps();
         });
     }

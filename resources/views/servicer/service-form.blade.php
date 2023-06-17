@@ -10,22 +10,22 @@
         <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
           <div class="card-body p-4 p-md-5">
             <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
-            <form>
-
+            <form method="POST" action="/addServicer">
+              @csrf
               <div class="row">
                 <div class="col-md-6 mb-4">
 
                   <div class="form-outline">
-                    <input type="text" id="fullName" class="form-control form-control-lg" />
-                    <label class="form-label" for="fullName">Full Name</label>
+                    <input type="text" name="provider_name" class="form-control form-control-lg" />
+                    <label class="form-label" for="provider_name">Full Name</label>
                   </div>
 
                 </div>
                 <div class="col-md-6 mb-4">
 
                   <div class="form-outline">
-                    <input type="text" id="address" class="form-control form-control-lg" />
-                    <label class="form-label" for="address">Address</label>
+                    <input type="text" name="provider_address" class="form-control form-control-lg" />
+                    <label class="form-label" for="provider_address">Address</label>
                   </div>
 
                 </div>
@@ -35,8 +35,8 @@
                 <div class="col-md-6 mb-4 d-flex align-items-center">
 
                   <div class="form-outline w-100">
-                    <input type="number" class="form-control form-control-lg" id="birthdayDate" />
-                    <label for="birthdayDate" class="form-label">Experience in years</label>
+                    <input type="number" class="form-control form-control-lg" name="provider_experience" />
+                    <label for="provider_experience" class="form-label">Experience in years</label>
                   </div>
 
                 </div>
@@ -45,20 +45,20 @@
                   <h6 class="mb-2 pb-1">Gender: </h6>
 
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="femaleGender"
-                      value="option1" checked />
+                    <input class="form-check-input" type="radio" name="provider_gender" id="femaleGender"
+                      value="female" checked />
                     <label class="form-check-label" for="femaleGender">Female</label>
                   </div>
 
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="maleGender"
-                      value="option2" />
+                    <input class="form-check-input" type="radio" name="provider_gender" id="maleGender"
+                      value="male" />
                     <label class="form-check-label" for="maleGender">Male</label>
                   </div>
 
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="otherGender"
-                      value="option3" />
+                    <input class="form-check-input" type="radio" name="provider_gender" id="otherGender"
+                      value="other" />
                     <label class="form-check-label" for="otherGender">Other</label>
                   </div>
 
@@ -69,25 +69,45 @@
                 <div class="col-md-6 mb-4 pb-2">
 
                   <div class="form-outline">
-                    <input type="email" id="emailAddress" class="form-control form-control-lg" />
-                    <label class="form-label" for="emailAddress">Email</label>
+                    <input type="email" name="provider_email" class="form-control form-control-lg" />
+                    <label class="form-label" for="providera_email">Email</label>
                   </div>
 
                 </div>
+                
+                <div class="col-md-6 mb-4 pb-2">
+                  <div class="form-outline">
+                    <input type="number" name="provider_number" class="form-control form-control-lg" />
+                    <label class="form-label" for="provider_number">Phone Number</label>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="row">
                 <div class="col-md-6 mb-4 pb-2">
 
                   <div class="form-outline">
-                    <input type="tel" id="phoneNumber" class="form-control form-control-lg" />
-                    <label class="form-label" for="phoneNumber">Phone Number</label>
+                    <input type="password" name="provider_password" class="form-control form-control-lg" />
+                    <label class="form-label" for="provider_password">Password</label>
                   </div>
 
                 </div>
+                
+                <div class="col-md-6 mb-4 pb-2">
+                  <div class="form-outline">
+                    <input type="password" name="provider_confirm_password" class="form-control form-control-lg" />
+                    <label class="form-label" for="provider_confirm_password">Confirm Password</label>
+                  </div>
+                </div>
+
               </div>
+              
 
               <div class="row">
                 <div class="col-6">
 
-                  <select class="select form-control-lg">
+                  <select class="select form-control-lg" name="provider_service">
                     <option value="1" disabled>Choose option</option>
                     <option value="carpenter">Carpenter</option>
                     <option value="painter">Painter</option>
@@ -102,10 +122,6 @@
 
                 </div>
                 
-                <div class="col-6">
-                <label class="form-label" for="customFile">upload your photo</label>
-                <input type="file" class="form-control" id="customFile" />
-                </div>
 
               </div>
 

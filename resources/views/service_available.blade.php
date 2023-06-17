@@ -47,7 +47,7 @@
     <div class="container">
         <div class="navbar">
            <h2 style="margin-left:2%;">Home Service Nepal</h2>
-           @include('components.navbar') 
+           @include('customer.navbar') 
     </div>
 
     <div style="background-color:grey;width:100%;height:95%;display:grid;grid-template-columns: auto auto auto;padding-left:12%;">
@@ -56,8 +56,8 @@
     <div class="card mt-5" style="width: 16rem;height:25rem;">
   <img class="card-img-top" src="{{ asset('photoes/p1.jpg') }}" alt="Card image cap">
   <div class="card-body">
-    <h5 class="card-title">{{$service->service_provider}}</h5>
-    <p class="card-text">{{$service->address}}</p>
+    <h5 class="card-title">{{$service->provider_name}}</h5>
+    <p class="card-text">{{$service->provider_experience}} years of experience</p>
     <input class="btn btn-primary" onclick="this.value='REQUESTED'" type="button" value="REQUEST" id="myButton1" />
   </div>
 </div>

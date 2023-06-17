@@ -8,61 +8,7 @@ use App\Models\Customer;
 use App\Models\Booking;
 class CustomerController extends Controller
 {
-   public function add(Request $req){
-    $customer=new Customer();
-    $customer->customer_id=$req->customer_id;
-    $customer->customer_name=$req->customer_name;
-    $customer->service= $req->service;
-    $customer->number= $req->number;
-    $customer->address=$req->address;
-    $customer->email= $req->email;
-    $result=$customer->save();
-    if($result){
-        return ["data"=>"sucessfully entered"];
-    }else{
-        return ["data"=>"not entered"];
-    }
-   }
-
-   public function get($customer_id=null){
-    return $customer_id ? Customer::find($customer_id) : Customer::all();
-   }
-   public function update(Request $req){
-    $customer=Customer::find($req->customer_id)->first();
-    if($customer){
-       // $customer->customer_id=$req->customer_id;
-    $customer->customer_name=$req->customer_name;
-    $customer->service= $req->service;
-    $customer->number= $req->number;
-    $customer->address=$req->address;
-    $customer->email= $req->email;
-    $customer->service_id= $req->service_id;
-    $customer->booking_id= $req->booking_id;
-    $result=$customer->save();
-    if($result){
-        return ["data"=>"sucessfully updated"];
-    }else{
-        return ["data"=>"not updated"];
-    }
-    }else{
-        return ["id"=>"not found"];
-    }
-   }
-
-
-   public function delete($customer_id){
-    $customer=Customer::find($customer_id);
-    $result=$customer->delete();
-    $getData=Customer::all();
-    if(!$customer){
-        return ["id"=>"not found"];
-    }
-    if($result){
-        return view("customer",["getData"=>$getData]);
-    }else{
-        return ["id"=>"not found"];
-    }
-   }
+   
    
    public function customerForm($id=""){
     $data=$id;
@@ -103,7 +49,6 @@ class CustomerController extends Controller
     $customer->email= $req->email;
     $customer->service_id= $req->service_id;
     $customer->save();
-
     $customers=Customer::all();
     return view("customer",["getData"=>$customers]);
 
@@ -118,5 +63,28 @@ public function customerRequestForService(Request $req){
     $booking->service_id=$service->service_id;
     $booking->save();
 
+}
+
+public function customer_login(Request $req){
+    return view("customer.customer_login");
+}
+public function customer_logged_in(Request $request){
+    $customer=Customer::where('customer_email',"=",$request->customer_email)->first();
+        if(empty($customer)){
+            return ["email"=>"invalid"];
+        }
+            if($customer->customer_password===$request->customer_password){
+                $request->session()->put($request->customer_email);
+                $request->session()->put($request->customer_password);
+                
+                return view("customer/customer_profile",["customer"=>$customer]);
+            }
+            
+            else return ["password"=>"did not match"];  
+    
+}
+
+public function customer_service(){
+    return view("customer.customer_service");
 }
 }

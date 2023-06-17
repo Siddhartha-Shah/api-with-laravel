@@ -65,12 +65,22 @@ Route::get("/services",[CustomerController::class,"profile"]);
 Route::get("/services/available/{name?}",[ServiceController::class,"serviceAvailable"]);
 
 Route::get("/servicer/service_profile",[ServiceController::class,"service_profile_request"]);
+Route::get("/servicer/serviceForm",[ServiceController::class,"service_form"]);
+Route::post("/addServicer",[ServiceController::class,"addServicer"]);
+Route::get("/servicer/login",[ServiceController::class,"servicer_login"]);
+Route::post("/servicer/login",[ServiceController::class,"servicerLoggedIn"]);
+Route::get("/servicer/servicer_request",[ServiceController::class,"servicer_request"]);
 
 Route::post("/updateService",[ServiceController::class,"updateServices"]);
 Route::get("/deleteServices/{id}",[ServiceController::class,"deleteServices"]);
 
 Route::get("/signupForServicer",[FormController::class,"signUpForServicer"]);
 Route::get("/signupForCustomer",[FormController::class,"signUpForCustomer"]);
+
+Route::get("/customer/login",[CustomerController::class,"customer_login"]);
+Route::post("/customer/login",[CustomerController::class,"customer_logged_in"]);
+Route::get("/customer/customer_profile",[CustomerController::class,"customer_logged_in"]);
+Route::get("/customer/customerservice",[CustomerController::class,"customer_service"]);
 
 
 
