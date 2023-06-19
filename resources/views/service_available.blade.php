@@ -54,10 +54,11 @@
 
     @foreach($services as $service)
     <div class="card mt-5" style="width: 16rem;height:25rem;">
-  <img class="card-img-top" src="{{ asset('photoes/p1.jpg') }}" alt="Card image cap">
+  <img class="card-img-top" src="{{ asset("storage/".$service->provider_photo) }}" alt="Card image cap" height=200/>
   <div class="card-body">
     <h5 class="card-title">{{$service->provider_name}}</h5>
     <p class="card-text">{{$service->provider_experience}} years of experience</p>
+    <p class="card-text">{{$service->provider_number}}</p>
    <!-- <input class="btn btn-primary" onclick="this.value='REQUESTED'" type="button" value="REQUEST" name="myButton1" />
     -->
     <a href={{ url('/services/select_service', [$service->service_id]) }} class="btn btn-primary">

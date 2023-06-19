@@ -6,9 +6,26 @@
         <div class="card" style="border-radius: 15px;">
           <div class="card-body text-center">
             <div class="mt-3 mb-4">
-              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
+              
+            @if(session('photo')==null)
+            <form method="post" action={{ url("servicer/uploadImage") }} enctype="multipart/form-data">
+              @csrf
+              <div>
+              <input type="file" alt="upload file" name="image"
                 class="rounded-circle img-fluid" style="width: 100px;" />
+                <input type="submit" value="submit"/>
+                </div>
+                </form>
+                @else
+
+                <div class="mt-3 mb-4">
+              <img src={{ asset("storage/".session("photo")) }}
+                class="rounded-circle img-fluid" style="width: 100px;" alt="profile pic" />
             </div>
+
+            @endif
+
+              </div>
             <h4 class="mb-2">{{  session("service_provider")[0] }}</h4>
             <p class="text-muted mb-4"> {{session("service_provider")[1] }} years experience</p>
             <div class="mb-2 pb-2">

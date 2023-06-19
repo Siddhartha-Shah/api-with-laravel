@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Service;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ServiceController;
@@ -72,6 +73,9 @@ Route::get("/servicer/login",[ServiceController::class,"servicer_login"]);
 Route::post("/servicer/login",[ServiceController::class,"servicerLoggedIn"]);
 Route::get("/servicer/logout",[ServiceController::class,"servicer_logout"]);
 Route::get("/servicer/servicer_request",[ServiceController::class,"servicer_request"]);
+Route::post("/servicer/uploadImage",[ServiceController::class,"uploadImage"]);
+Route::get("/acceptBookingAction/{id}",[ServiceController::class,"acceptBookingAction"]);
+Route::get("/rejectBookingAction/{id}",[ServiceController::class,"rejectBookingAction"]);
 
 
 Route::post("/updateService",[ServiceController::class,"updateServices"]);

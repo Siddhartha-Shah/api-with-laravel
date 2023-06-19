@@ -5,6 +5,7 @@ use App\Models\Service;
 use App\Models\Customer;
 use App\Models\Booking;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 
 class ServiceController extends Controller
@@ -150,20 +151,39 @@ class ServiceController extends Controller
             if($services->provider_password===$request->provider_password){
                 $request->session()->put("service_provider",[$services->provider_name,$services->provider_experience,$services->provider_address,$services->provider_number,$services->provider_email]);
                 $request->session()->put("service_id",$services->service_id);
-              //echo(session("service_provider")[0]);
-                
+                $request->session()->put("photo",$services->provider_photo);
+             // echo(asset("storage/".session("photo")));
+                //echo asset("");
                 return view("servicer/service_profile");
             }
             
             else return ["password"=>"did not match"];  
       }
 
+      public function uploadImage(Request $request){
+        $fileName=time() . "-sidhu.".$request->file('image')->getClientOriginalExtension();
+        $file_extension=$request->file('image')->storeAs('public/uploads',$fileName);
+       $service=Service::find(session('service_id'));
+       $service->provider_photo=$file_extension;
+       $service->save();
+       $request->session()->put("photo",$service->provider_photo);
+       return redirect("servicer/login");
+      }
+
       public function servicer_request(){
-        $booking=Booking::with('customer')->get();
-        echo "<pre>";
-        print_r($booking[0]['customer'][0]->customer_id);
-        echo "</pre>";
-        //return view("servicer/servicer_request");
+         //$booking=Booking::with('customer')->get();
+
+        $list = DB::table('bookings')
+        ->join('customers', 'bookings.booking_id', '=', 'customers.booking_id')
+        ->join('services', 'bookings.booking_id', '=', 'services.booking_id')
+        ->get();
+        // echo "<pre>";
+        //print_r($booking[0]['customer'][0]->customer_id);
+        //print_r($booking[0]['customer'][0]);
+      // print_r($list);
+       // echo "</pre>";
+
+        return view("servicer/servicer_request",["bookings"=>$list]);
       }
 
       public function selectService($s_id){
@@ -172,15 +192,36 @@ class ServiceController extends Controller
         $booking->customer_id=session('customer_id');
         $booking->service_id=$s_id;
         $booking->save();
-        $customer=Customer::find(session('customer_id'));
-        $customer->booking_id=$booking->id;
+
+        $customer=Customer::find(session('customer_id'))->first();
+        $customer->booking_id=$booking->booking_id;
         $customer->save();
-        $service=Service::find($s_id);
-        $service->booking_id=$booking->id;
+
+        $service=Service::find($s_id)->first();
+        $service->booking_id=$booking->booking_id;
         $service->save();
         // echo "<pre>";
         // print_r($booking->booking_id);
         // echo "</pre>";
 
       }
+
+      public function acceptBookingAction($id){
+      
+        $booking=Booking::find($id)->first();
+        $booking->action="accepted";
+        $booking->save();
+       return redirect("servicer/servicer_request");
+        
+    }
+    public function rejectBookingAction($id){
+        $booking=Booking::find($id)->first();
+        $booking->action="rejected";
+        $booking->save();
+       return redirect("servicer/servicer_request");
+        
+        
+    }
+
+    
 }

@@ -26,19 +26,29 @@
            @include('servicer.navbar') 
     </div>
 
+    @foreach($bookings as $booking )
 <div class="card text-center">
   <div class="card-header">
-    Featured
+  <p class="card-text">From: {{$booking->customer_address}}</p>
   </div>
-  <div class="card-body">
-    <h5 class="card-title">Special title treatment</h5>
-    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-  <div class="card-footer text-muted">
-    2 days ago
+  <div class="card-body" style="display:flex;justify-content:space-around;">
+    <h5 class="card-title">{{$booking->customer_name}}</h5>
+   
+    <p class="card-text">Contact: {{$booking->customer_number}}</p>
+    <p class="card-text">Email: {{$booking->customer_email}}</p>
+
+    @if($booking->action=="requested")
+    <a href={{ url('/acceptBookingAction',[$booking->booking_id]) }} class="btn btn-primary">Accept</a>
+    <a href={{ url('/rejectBookingAction', [$booking->booking_id]) }} class="btn btn-danger">Reject</a>
+    @elseif($booking->action=="accepted")
+    <p>Booking Accepted</p>
+    @else
+    <p>Booking Cancelled</p>
+    @endif
+ 
   </div>
 </div>
+@endforeach
 
     </div>
    

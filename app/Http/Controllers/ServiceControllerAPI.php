@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
 use Illuminate\Http\Request;
 use App\Models\Service;
 class ServiceControllerAPI extends Controller
@@ -60,5 +61,7 @@ class ServiceControllerAPI extends Controller
                 return ["services"=>"Not Deleted"];
             }
         }
+
+        
     
 }
